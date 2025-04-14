@@ -29,22 +29,24 @@
     <div id="uhrzeit">--:--:--</div>
 
     <script>
-    function updateUhrzeit() {
-      const jetzt = new Date();
-      const stunden = String(jetzt.getHours()).padStart(2, '0');
-      const minuten = String(jetzt.getMinutes()).padStart(2, '0');
-      const sekunden = String(jetzt.getSeconds()).padStart(2, '0');
-      const uhrzeit = `${stunden}:${minuten}:${sekunden}`;
-      document.getElementById('uhrzeit').textContent = uhrzeit;
-    }
+        setTimeout(() => location.reload(), 5000); // alle 5 Sekunden
+        function updateUhrzeit() {
+            const jetzt = new Date();
+            const stunden = String(jetzt.getHours()).padStart(2, '0');
+            const minuten = String(jetzt.getMinutes()).padStart(2, '0');
+            const sekunden = String(jetzt.getSeconds()).padStart(2, '0');
+            const uhrzeit = `${stunden}:${minuten}:${sekunden}`;
+            document.getElementById('uhrzeit').textContent = uhrzeit;
+        }
 
-    // Direkt beim Laden aufrufen
-    updateUhrzeit();
-    // Jede Sekunde aktualisieren
-    setInterval(updateUhrzeit, 1000);
+        // Direkt beim Laden aufrufen
+        updateUhrzeit();
+        // Jede Sekunde aktualisieren
+        setInterval(updateUhrzeit, 1000);
     </script>
 
     <h3>Ups... This web service is currently not available!</h3>
     <p>Try it again later or contact an administrator.</p>
+    <h1 style="color:red;">TEST: 18:57 Uhr</h1>
 </body>
 </html>
