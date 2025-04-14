@@ -1,52 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiosk - ZETRA</title>
-</head>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diashow</title>
+  <style>
     body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100vh;
-        background-color: #f0f0f0;
-        font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    h3 {
-        color: #970707;
+    .slideshow-container {
+      position: relative;
+      max-width: 1000px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
+    .slide {
+      display: none;
+      width: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .active {
+      display: block;
+    }
     #uhrzeit {
-        font-size: 2em;
-        font-family: monospace;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-size: 24px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 5px;
     }
-</style>
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 50px;
+      margin: 0;
+      padding: 20px;
+    }
+  </style>
+</head>
 <body>
     <div id="uhrzeit">--:--:--</div>
+    
 
-    <script>
-        setTimeout(() => location.reload(), 5000); // alle 5 Sekunden
-        function updateUhrzeit() {
-            const jetzt = new Date();
-            const stunden = String(jetzt.getHours()).padStart(2, '0');
-            const minuten = String(jetzt.getMinutes()).padStart(2, '0');
-            const sekunden = String(jetzt.getSeconds()).padStart(2, '0');
-            const uhrzeit = `${stunden}:${minuten}:${sekunden}`;
-            document.getElementById('uhrzeit').textContent = uhrzeit;
-        }
+  <div class="slideshow-container">
+    <div class="slide active">
+        <div id="datum" style="color: white; font-size: 80px; text-align: center; font-family: sans-serif;"></div>
+    </div>
+    <div class="slide">
+        <a class="weatherwidget-io" href="https://forecast7.com/en/52d5213d40/berlin/" data-label_1="BERLIN" data-label_2="WEATHER" data-theme="original" >BERLIN WEATHER</a>
+        <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+    </div>
+    <div class="slide">
+      <img src="https://goldenpigeon92.github.io/ZETRAHaupt-Server/ZETRA_kioskscreen.png" alt="Bild 1" />
+    </div>
+  </div>
 
-        // Direkt beim Laden aufrufen
-        updateUhrzeit();
-        // Jede Sekunde aktualisieren
-        setInterval(updateUhrzeit, 1000);
-    </script>
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
 
-    <h3>Ups... This web service is currently not available!</h3>
-    <p>Try it again later or contact an administrator.</p>
-    <h1 style="color:red;">TEST: 19:12 Uhr</h1>
+    function showNextSlide() {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 5000); // wechselt alle 5 Sekunden
+    
+    // Uhrzeit aktualisieren
+    function updateUhrzeit() {
+        const jetzt = new Date();
+        const stunden = String(jetzt.getHours()).padStart(2, '0');
+        const minuten = String(jetzt.getMinutes()).padStart(2, '0');
+        const sekunden = String(jetzt.getSeconds()).padStart(2, '0');
+        const uhrzeit = `${stunden}:${minuten}:${sekunden}`;
+        document.getElementById('uhrzeit').textContent = uhrzeit;
+    }
+
+    // Datum aktualisieren
+    function updateDatum() {
+        const jetzt = new Date();
+    const tag = String(jetzt.getDate()).padStart(2, '0');
+    const monat = String(jetzt.getMonth() + 1).padStart(2, '0'); // Monate beginnen bei 0
+    const jahr = jetzt.getFullYear();
+    const datum = `${tag}.${monat}.${jahr}`;
+    document.getElementById('datum').textContent = datum;
+    }
+
+window.onload = updateDatum; // beim Laden der Seite das Datum setzen
+
+
+    // Direkt beim Laden aufrufen
+    updateUhrzeit();
+    // Jede Sekunde aktualisieren
+    setInterval(updateUhrzeit, 1000);
+    
+  </script>
+
 </body>
 </html>
