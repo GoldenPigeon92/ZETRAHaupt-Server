@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiosk - ZETRA</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+    }
+    h3 {
+        color: #970707;
+    }
+    #uhrzeit {
+      font-size: 2em;
+      font-family: monospace;
+    }
+</style>
+<body>
+    <div id="uhrzeit">--:--:--</div>
+
+  <script>
+    function updateUhrzeit() {
+      const jetzt = new Date();
+      const stunden = String(jetzt.getHours()).padStart(2, '0');
+      const minuten = String(jetzt.getMinutes()).padStart(2, '0');
+      const sekunden = String(jetzt.getSeconds()).padStart(2, '0');
+      const uhrzeit = `${stunden}:${minuten}:${sekunden}`;
+      document.getElementById('uhrzeit').textContent = uhrzeit;
+    }
+
+    // Direkt beim Laden aufrufen
+    updateUhrzeit();
+    // Jede Sekunde aktualisieren
+    setInterval(updateUhrzeit, 1000);
+  </script>
+
+    <h3>Ups... This web service is currently not available!</h3>
+    <p>Try it again later or contact an administrator.</p>
+</body>
+</html>
