@@ -21,7 +21,6 @@
       width: 100%;
       overflow: hidden;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
     .slide {
@@ -55,6 +54,20 @@
       margin: 0;
       padding: 20px;
     }
+    p {
+      color: white;
+      text-align: center;
+      font-size: 20px;
+      margin: 0;
+      padding: 20px;
+    }
+    a {
+      color: rgb(168, 168, 168);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -63,7 +76,7 @@
 
   <div class="slideshow-container">
     <div class="slide active">
-        <div id="datum" style="color: white; font-size: 80px; text-align: center; font-family: sans-serif;"></div>
+        <div id="datum" style="color: white; font-size: 80px; text-align: center; font-family: sans-serif; border: none;"></div>
     </div>
     <div class="slide">
         <a class="weatherwidget-io" href="https://forecast7.com/en/52d5213d40/berlin/" data-label_1="BERLIN" data-label_2="WEATHER" data-theme="original" >BERLIN WEATHER</a>
@@ -72,7 +85,18 @@
         </script>
     </div>
     <div class="slide">
-      <img src="https://goldenpigeon92.github.io/ZETRAHaupt-Server/ZETRA_kioskscreen.png" alt="Bild 1" />
+      <script src="https://widgets.coingecko.com/gecko-coin-list-widget.js"></script>
+      <gecko-coin-list-widget locale="en" dark-mode="true" outlined="true" coin-ids="" initial-currency="eur"></gecko-coin-list-widget>
+    </div>
+    <div class="slide">
+      <p>	&#9830;FluxOS C01 is still under maintenance. You can see the versions <a href="https://goldenpigeon92.github.io/ZETRAHaupt-Server/fluxosc01.html">here</a>.</p>
+      <p>	&#9830;FluxOS 2.0.0 is no longer supported.</p>
+    </div>
+    <div class="slide">
+      <iframe src="https://calendar.google.com/calendar/embed?src=jannik.luber%40gmail.com" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+      </div>
+    <div class="slide">
+      <img src="https://goldenpigeon92.github.io/ZETRAHaupt-Server/ZETRA_kioskscreen.png" alt="ZETRA" />
     </div>
   </div>
 
